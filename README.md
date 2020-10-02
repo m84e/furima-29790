@@ -27,14 +27,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| nickname      | string  | null: false |
-| email_add     | string  | null: false |
-| password      | integer | null: false |
-| name_kanji    | string  | null: false |
-| name_kana     | string  | null: false |
-| birthday      | integer | null: false |
+| Column            | Type    | Options     |
+| ----------------- | ------- | ----------- |
+| nickname          | string  | null: false |
+| email_add         | string  | null: false |
+| password          | integer | null: false |
+| family_name_kanji | string  | null: false |
+| first_name_kanji  | string  | null: false |
+| family_name_kana  | string  | null: false |
+| first)_name_kana  | string  | null: false |
+| birthday          | date    | null: false |
 
 ### Association
 
@@ -44,30 +46,37 @@ Things you may want to cover:
 ## items テーブル
 
 | Column    | Type    | Options     |
-| ----------| --------| ------------|
+| --------- | ------- | ----------- |
+| user_id   | string  | null: false |
 | image     | string  | null: false |
 | item_name | string  | null: false |
+| item_des  | text    | null: false |
+| item_cate | string  | null: false |
+| item_sta  | string  | null: false |
+| deli_char | string  | null: false |
+| ship_from | string  | null: false |
+| ship_days | integer | null: false |
 | price     | integer | null: false |
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one    :buyers
 
 ## buyers テーブル
 
-| Colum      | Type    | Options     |
-| -----------| --------|-------------|
-| card_num   | integer | null: false |
-| exp_date   | integer | null: false |
-| sec_code   | integer | null: false |
-| pos_code   | integer | null: false |
-| city       | string  | null: false |
-| add        | integer | null: false |
-| build_name | string  | null: false |
-| phone_num  | integer | null: false |
+| Colum       | Type    | Options     |
+| ----------- | ------- | ----------- |
+| user_id     | string  | null: false |
+| item_id     | string  | null: false |
+| postal_code | integer | null: false |
+| prefectures | string  | null: false |
+| city        | string  | null: false |
+| add         | integer | null: false |
+| build_name  | string  | null: false |
+| phone_num   | integer | null: false |
 
 ### Association
 
-- belongs_to :users
-- belongs)_to :items
+- belongs_to :user
+- belongs)_to :item

@@ -31,7 +31,7 @@ Things you may want to cover:
 | ----------------- | ------- | ----------- |
 | nickname          | string  | null: false |
 | email_add         | string  | null: false |
-| password          | integer | null: false |
+| password          | string  | null: false |
 | family_name_kanji | string  | null: false |
 | first_name_kanji  | string  | null: false |
 | family_name_kana  | string  | null: false |
@@ -45,17 +45,17 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column      | Type       | Options     |
-| ----------- | ---------- | ----------- |
-| name        | string     | null: false |
-| description | text       | null: false |
-| category    | integer    | null: false |
-| status      | integer    | null: false |
-| deli_char   | integer    | null: false |
-| ship_from   | integer    | null: false |
-| ship_days   | integer    | null: false |
-| price       | integer    | null: false |
-| user        | references | null: false, foreign_key: true |
+| Column       | Type       | Options     |
+| ------------ | ---------- | ----------- |
+| name         | string     | null: false |
+| description  | text       | null: false |
+| category_id  | integer    | null: false |
+| status_id    | integer    | null: false |
+| deli_char_id | integer    | null: false |
+| ship_from_id | integer    | null: false |
+| ship_days_id | integer    | null: false |
+| price        | integer    | null: false |
+| user         | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -76,15 +76,15 @@ Things you may want to cover:
 - has_one :shipping_data
 
 ### Shipping_Data
-| Colum       | Type    | Options     |
-| ------------| ------- | ----------- |
-| postal_code | string  | null: false |
-| prefectures | string  | null: false |
-| city        | string  | null: false |
-| house_num   | string  | null: false |
-| build_name  | string  |             |
-| phone_num   | string  | null: false |
-
+| Colum          | Type       | Options     |
+| -------------- | ---------- | ----------- |
+| postal_code    | string     | null: false |
+| prefectures_id | integer    | null: false |
+| city           | string     | null: false |
+| house_num      | string     | null: false |
+| build_name     | string     |             |
+| phone_num      | string     | null: false |
+| buyer          | references | null: false, foreign_key: true |
 ### Association
 
 - belongs_to :buyer

@@ -45,38 +45,46 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column    | Type    | Options     |
-| --------- | ------- | ----------- |
-| user_id   | string  | null: false |
-| image     | string  | null: false |
-| item_name | string  | null: false |
-| item_des  | text    | null: false |
-| item_cate | string  | null: false |
-| item_sta  | string  | null: false |
-| deli_char | string  | null: false |
-| ship_from | string  | null: false |
-| ship_days | integer | null: false |
-| price     | integer | null: false |
+| Column      | Type       | Options     |
+| ----------- | ---------- | ----------- |
+| name        | string     | null: false |
+| description | text       | null: false |
+| category    | integer    | null: false |
+| status      | integer    | null: false |
+| deli_char   | integer    | null: false |
+| ship_from   | integer    | null: false |
+| ship_days   | integer    | null: false |
+| price       | integer    | null: false |
+| user        | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one    :buyers
+- has_one    :buyer
 
 ## buyers テーブル
 
-| Colum       | Type    | Options     |
-| ----------- | ------- | ----------- |
-| user_id     | string  | null: false |
-| item_id     | string  | null: false |
-| postal_code | integer | null: false |
-| prefectures | string  | null: false |
-| city        | string  | null: false |
-| add         | integer | null: false |
-| build_name  | string  | null: false |
-| phone_num   | integer | null: false |
+| Colum       | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs)_to :item
+- belongs_to :item
+- has_one :shipping_data
+
+### Shipping_Data
+| Colum       | Type    | Options     |
+| ------------| ------- | ----------- |
+| postal_code | string  | null: false |
+| prefectures | string  | null: false |
+| city        | string  | null: false |
+| house_num   | string  | null: false |
+| build_name  | string  |             |
+| phone_num   | string  | null: false |
+
+### Association
+
+- belongs_to :buyer

@@ -57,22 +57,23 @@ RSpec.describe User, type: :model do
     end
 
     it "passwordが英字のみだとユーザー登録できない" do
-      @user.password = "abc"
-      @user.password_confirmation = "abc"
+      @user.password = "abcdef"
+      @user.password_confirmation = "abcdef"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is invalid")
     end
 
     it "passwordが数字のみだとユーザー登録できない" do
-      @user.password = "123"
-      @user.password_confirmation = "123"
+      @user.password = "123456"
+      @user.password_confirmation = "123456"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is invalid")
     end
 
     it "重複したemailが存在する場合登録できない" do
       @user.save
-      another_user = FactoryBot.build(:user, email: @user.email)
+      another_user = FactoryBot.build(:user)
+      another_user.email = @user.email
       another_user.valid?
       expect(another_user.errors.full_messages).to include("Email has already been taken")
     end

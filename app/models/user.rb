@@ -5,13 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   with_options presence: true do
+    @zenkaku = /\A[ぁ-んァ-ン一-龥]/
+    @zenkaku_kana = /\A[ァ-ヶー－]+\z/
     validates :nickname
     validates :email, format: { with: /@.+/}
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
-    validates :family_name_kanji, format: { with: /\A[ぁ-んァ-ン一-龥]/}
-    validates :first_name_kanji, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-    validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/}
-    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/}
+    validates :family_name_kanji, format: { with: @zenkaku}
+    validates :first_name_kanji, format: { with: @zenkaku}
+    validates :family_name_kana, format: { with: @zenkaku_kana}
+    validates :first_name_kana, format: { with: @zenkaku_kana}
     validates :birthday
    end
 

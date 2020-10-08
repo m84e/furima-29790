@@ -30,12 +30,12 @@ Things you may want to cover:
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
 | nickname          | string  | null: false |
-| email_add         | string  | null: false |
+| email             | string  | null: false |
 | password          | string  | null: false |
 | family_name_kanji | string  | null: false |
 | first_name_kanji  | string  | null: false |
 | family_name_kana  | string  | null: false |
-| first)_name_kana  | string  | null: false |
+| first_name_kana   | string  | null: false |
 | birthday          | date    | null: false |
 
 ### Association

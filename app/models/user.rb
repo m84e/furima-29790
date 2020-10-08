@@ -5,12 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  validates :email, presence: true
-  validates :password, presence: true
-  validates :family_name_kanji, presence: true
-  validates :first_name_kanji, presence: true
-  validates :family_name_kana, presence: true
-  validates :first_name_kana, presence: true
+  
+  with_options presence: true do
+    validates :email, format: { with: /@.+/}
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
+    validates :family_name_kanji, format: { with: /\A[ぁ-んァ-ン一-龥]/}
+    validates :first_name_kanji, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/}
+    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/} 
+  end
   validates :birthday, presence: true
 
   has_many :items

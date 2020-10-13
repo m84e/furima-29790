@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
 
 
   context "新規登録がうまくいくとき" do
-    it "nickname,email,password,password_confirmation,family_name_kanji,first_name_kanji,family_name_kana,first_name_kana,birthdayが存在すれば登録できること" do
+    it "全ての入力フォームが正しく記述すれば登録できること" do
       expect(@user).to be_valid
     end
 

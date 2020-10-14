@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :deli_char_id
     validates :ship_from_id
-    validates :ship_days_id
+    validates :ship_day_id
   end
 
   with_options numericality: { other_than: 1 } do
@@ -24,7 +24,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :deli_char_id
     validates :ship_from_id
-    validates :ship_days_id
+    validates :ship_day_id
   end
 
   validates :price, presence: true, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999},format: {with: /\A[0-9]+\z/}

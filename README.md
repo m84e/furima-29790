@@ -53,7 +53,7 @@ Things you may want to cover:
 | status_id    | integer    | null: false |
 | deli_char_id | integer    | null: false |
 | ship_from_id | integer    | null: false |
-| ship_days_id | integer    | null: false |
+| ship_day_id | integer    | null: false |
 | price        | integer    | null: false |
 | user         | references | null: false, foreign_key: true |
 

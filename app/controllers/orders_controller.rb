@@ -9,22 +9,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order_address = OrderAddress.new(order_address_params)
-    if @order_address.valid?
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: order_address_params[:token],
-        currency: 'jpy'
-      )
-       @order_address.save
-      return redirect_to root_path
-    else
-      render 'index'
-    end
+    payjp
   end
 
   private
+
     def order_address_params
       params.require(:order_address).permit(:postal_code, :prefectures_id, :city, :house_num, :build_name, :phone_num).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
     end
@@ -32,4 +21,21 @@ class OrdersController < ApplicationController
     def set_item
       @item = Item.find(params[:item_id])
     end
+
+    def payjp
+        @order_address = OrderAddress.new(order_address_params)
+      if @order_address.valid?
+        Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
+        Payjp::Charge.create(
+          amount: @item.price,
+          card: order_address_params[:token],
+          currency: 'jpy'
+        )
+        @order_address.save
+        return redirect_to root_path
+      else
+        render 'index'
+      end
+    end
+
 end

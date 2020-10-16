@@ -41,7 +41,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_many :buyers
+- has_many :orders
 
 ## items テーブル
 
@@ -53,16 +53,16 @@ Things you may want to cover:
 | status_id    | integer    | null: false |
 | deli_char_id | integer    | null: false |
 | ship_from_id | integer    | null: false |
-| ship_day_id | integer    | null: false |
+| ship_day_id | integer     | null: false |
 | price        | integer    | null: false |
 | user         | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one    :buyer
+- has_one    :order
 
-## buyers テーブル
+## Orders テーブル
 
 | Colum       | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
@@ -73,9 +73,9 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_data
+- has_one :address
 
-### Shipping_Data
+### Address
 | Colum          | Type       | Options     |
 | -------------- | ---------- | ----------- |
 | postal_code    | string     | null: false |
@@ -84,7 +84,7 @@ Things you may want to cover:
 | house_num      | string     | null: false |
 | build_name     | string     |             |
 | phone_num      | string     | null: false |
-| buyer          | references | null: false, foreign_key: true |
+| order          | references | null: false, foreign_key: true |
 ### Association
 
-- belongs_to :buyer
+- belongs_to :order
